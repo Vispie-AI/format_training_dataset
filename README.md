@@ -182,31 +182,3 @@ Each exported record contains:
 }
 ````
 
-  
-
----
-
-## **Dataset Quality Metrics**
-
-**👥 Creator Follower Distribution**
-
-- Range: 0 → 55.2M followers
-
-- Average: 129.8K followers
-
-**👥 Video View Distribution**
-
-# ** Creator Wise Training Dataset Construction Process**
-
-## **Dataset Construction Pipeline**
-
-### Datasource 1: Jobright Creator Overview
-
-### Datasource2: Turbolearn Creator Overview
-
-### Datasource3: Studyfetch Creator Overview
-
-## Data Structure
-
-## Data Quality Metrics
-
