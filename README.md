@@ -182,15 +182,31 @@ Each exported record contains:
 }
 ````
 
-#### **5.2 Train/Test Split Example**
+---
 
-To create an 80/20 train/test split without format leakage, split by `format_id` so that all videos of a format remain in a single split. Use the helper script below to reproduce the split:
+## Public Dataset (External Collaboration)
+
+This repository now includes a publishable dataset package under `format_training_dataset/` intended for external teams to explore different methodologies (not necessarily to beat a baseline). The target deliverables are:
+
+```
+format_training_dataset/
+├── train_pairs.csv      # paired comparisons + ground truth
+├── test_pairs.csv       # paired comparisons, no answers
+├── video_metadata.csv   # format, duration, and other features
+├── videos/              # video access info
+└── README.md            # access instructions
+```
+
+### How the package is generated
+
+Use the reproducible build script to export the public dataset:
 
 ```bash
-python split_dataset.py \
-  --input format_training_20251212.jsonl \
-  --train-output format_training_20251212.train.jsonl \
-  --test-output format_training_20251212.test.jsonl \
-  --seed 42 \
-  --train-ratio 0.8
+python build_public_dataset.py
 ```
+
+This script:
+- filters to `human_verified_status = "correct"` videos
+- splits by `format_id` (80% train / 20% test)
+- creates ~1,400 training pairs with labels and ~300 test pairs without labels
+- writes a `video_metadata.csv` file with all fields needed to fetch videos
