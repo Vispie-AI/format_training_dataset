@@ -182,3 +182,31 @@ Each exported record contains:
 }
 ````
 
+---
+
+## Public Dataset (External Collaboration)
+
+This repository now includes a publishable dataset package under `format_training_dataset/` intended for external teams to explore different methodologies (not necessarily to beat a baseline). The target deliverables are:
+
+```
+format_training_dataset/
+├── train_pairs.csv      # paired comparisons + ground truth
+├── test_pairs.csv       # paired comparisons, no answers
+├── video_metadata.csv   # format, duration, and other features
+├── videos/              # video access info
+└── README.md            # access instructions
+```
+
+### How the package is generated
+
+Use the reproducible build script to export the public dataset:
+
+```bash
+python build_public_dataset.py
+```
+
+This script:
+- filters to `human_verified_status = "correct"` videos
+- splits by `format_id` (80% train / 20% test)
+- creates ~1,400 training pairs with labels and ~300 test pairs without labels
+- writes a `video_metadata.csv` file with all fields needed to fetch videos
