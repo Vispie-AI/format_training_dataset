@@ -182,3 +182,15 @@ Each exported record contains:
 }
 ````
 
+#### **5.2 Train/Test Split Example**
+
+To create an 80/20 train/test split without format leakage, split by `format_id` so that all videos of a format remain in a single split. Use the helper script below to reproduce the split:
+
+```bash
+python split_dataset.py \
+  --input format_training_20251212.jsonl \
+  --train-output format_training_20251212.train.jsonl \
+  --test-output format_training_20251212.test.jsonl \
+  --seed 42 \
+  --train-ratio 0.8
+```
